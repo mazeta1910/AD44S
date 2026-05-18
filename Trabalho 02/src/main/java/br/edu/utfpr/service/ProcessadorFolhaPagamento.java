@@ -70,6 +70,7 @@ public class ProcessadorFolhaPagamento {
      * Dias de afastamento no mês (0 = nenhum). Referência: mês com 30 dias.
      * Quando há afastamento, a quantidade de dias é sorteada de forma determinística.
      */
+
     private int gerarDiasAfastamentoNoMes(int empregadoId, int mes) {
         if (randomDeterministico01(empregadoId, mes, 3) >= 0.015) {
             return 0;
@@ -78,17 +79,6 @@ public class ProcessadorFolhaPagamento {
         return Math.min(dias, 30);
     }
 
-    /**
-     * Simulação anual simplificada (não é legislação real).
-     * <p>
-     * <b>Faltas:</b> por mês, sorteia 0–3 faltas. O desconto no líquido do mês é
-     * {@code (salário do mês / 30) × número de faltas}, ou seja, cada falta desconta o valor de um dia
-     * proporcional ao salário daquele mês (já com fator sazonal), <em>antes</em> do ajuste por afastamento.
-     * <p>
-     * <b>Afastamento:</b> sorteia quantos dias do mês o empregado ficou afastado. O salário do mês é
-     * proporcional: em cada dia afastado paga-se 60% do valor de um dia; nos demais dias, 100%
-     * (base mensal referenciada a 30 dias): {@code salárioMes × ((30 - d) + 0,60 × d) / 30}.
-     */
     private void calcularFolhaAnual(int index) {
         int empregadoId = index + 1;
         double salarioBase = salariosBase[index];
@@ -238,6 +228,7 @@ public class ProcessadorFolhaPagamento {
     /**
      * @param imprimirResumoTempos se true, imprime total e média por lote após a tabela (útil para uma única execução).
      */
+
     public long executarSerialComTabela(int qtdLotes, boolean imprimirResumoTempos) {
         long inicioTotal = System.currentTimeMillis();
 

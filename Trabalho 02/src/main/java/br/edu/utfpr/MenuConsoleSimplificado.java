@@ -28,7 +28,6 @@ public class MenuConsoleSimplificado {
 
     private static final Scanner scanner = new Scanner(System.in);
     private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    /** Carga menor para demonstração em sala (modo apresentação). */
     private static final int CARGA_APRESENTACAO = 5_000_000;
 
     private record SnapshotRecursos(Double cpuProcesso, Double cpuSistema, Double ramFisicaPct, Double heapJvmPct) {
